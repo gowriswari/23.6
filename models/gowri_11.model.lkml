@@ -10,6 +10,11 @@ datagroup: gowri_11_default_datagroup {
 
 persist_with: gowri_11_default_datagroup
 
+access_grant: can_view_financial_data {
+  user_attribute: department
+  allowed_values: [ "orders" ]
+}
+
 explore: billion_orders {
   join: orders {
     type: left_outer
@@ -111,6 +116,7 @@ explore: orders {
 }
 
 explore: order_items {
+  required_access_grants: [can_view_financial_data]
   join: orders {
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
