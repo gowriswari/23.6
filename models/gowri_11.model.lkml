@@ -12,7 +12,7 @@ persist_with: gowri_11_default_datagroup
 
 access_grant: can_view_financial_data {
   user_attribute: department
-  allowed_values: [ "orders" ]
+  allowed_values: [ "orders", "order_items" ]
 }
 
 explore: billion_orders {
