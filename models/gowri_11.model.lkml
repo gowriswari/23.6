@@ -12,8 +12,9 @@ persist_with: gowri_11_default_datagroup
 
 access_grant: can_view_financial_data {
   user_attribute: department
-  allowed_values: [ "orders", "order_items" ]
+  allowed_values: [ "order_items" ]
 }
+
 
 explore: billion_orders {
   join: orders {
@@ -108,6 +109,7 @@ explore: inventory_items {
 }
 
 explore: orders {
+  #required_access_grants: [can_view_financial_data1]
   join: users {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
@@ -118,28 +120,28 @@ explore: orders {
 explore: order_items {
   required_access_grants: [can_view_financial_data]
   join: orders {
-    required_access_grants: [can_view_financial_data]
+    #required_access_grants: [can_view_financial_data]
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
     relationship: many_to_one
   }
 
   join: inventory_items {
-    required_access_grants: [can_view_financial_data]
+    #required_access_grants: [can_view_financial_data]
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
     relationship: many_to_one
   }
 
   join: users {
-    required_access_grants: [can_view_financial_data]
+    #required_access_grants: [can_view_financial_data]
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
 
   join: products {
-    required_access_grants: [can_view_financial_data]
+    #required_access_grants: [can_view_financial_data]
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
@@ -147,6 +149,7 @@ explore: order_items {
 }
 
 explore: order_items_vijaya {
+  #required_access_grants: [can_view_financial_data1]
   join: orders {
     type: left_outer
     sql_on: ${order_items_vijaya.order_id} = ${orders.id} ;;
