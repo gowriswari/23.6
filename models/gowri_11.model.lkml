@@ -118,24 +118,28 @@ explore: orders {
 explore: order_items {
   required_access_grants: [can_view_financial_data]
   join: orders {
+    required_access_grants: [can_view_financial_data]
     type: left_outer
     sql_on: ${order_items.order_id} = ${orders.id} ;;
     relationship: many_to_one
   }
 
   join: inventory_items {
+    required_access_grants: [can_view_financial_data]
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
     relationship: many_to_one
   }
 
   join: users {
+    required_access_grants: [can_view_financial_data]
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
 
   join: products {
+    required_access_grants: [can_view_financial_data]
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one
