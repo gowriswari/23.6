@@ -37,7 +37,7 @@ view: order_items {
 
   dimension: duplicate_status{
     type: string
-    sql: ${orders.status} ;;
+    sql: ${users.gender} ;;
   }
   measure: count {
     type: count
