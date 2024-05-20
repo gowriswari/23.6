@@ -35,8 +35,30 @@ view: users {
   }
   dimension: gender {
     type: string
-    sql: ${TABLE}.gender ;;
-  }
+    #sql: ${TABLE}.gender ;;
+    #view: orders
+    #dimension: status {
+      case: {
+        when: {
+          sql: ${TABLE}.gender = "f" ;;
+          label: "female"
+        }
+        when: {
+          sql: ${TABLE}.gender = "m" ;;
+          label: "male"
+        }
+        when: {
+          sql: ${TABLE}.gender = "male" ;;
+          label: "MALE"
+        }
+        when: {
+          sql: ${TABLE}.gender = "female" ;;
+          label: "FEMALE"
+        }
+        else: "unknown"
+      }
+    }
+
   dimension: last_name {
     type: string
     sql: ${TABLE}.last_name ;;
@@ -57,15 +79,15 @@ view: users {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	first_name,
-	last_name,
-	events.count,
-	orders.count,
-	saralooker.count,
-	sindhu.count,
-	user_data.count
-	]
+  id,
+  first_name,
+  last_name,
+  events.count,
+  orders.count,
+  saralooker.count,
+  sindhu.count,
+  user_data.count
+  ]
   }
 
 }

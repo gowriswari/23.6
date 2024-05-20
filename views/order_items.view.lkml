@@ -39,6 +39,8 @@ view: order_items {
     type: string
     sql: ${users.gender} ;;
   }
+
+
   measure: count {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
